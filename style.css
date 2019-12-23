@@ -22,7 +22,8 @@ h3 {
 }
 
 figure,
-h1 {
+h1,
+.log>a {
   align-self: center;
 }
 
@@ -33,6 +34,8 @@ h1 {
   margin-bottom: 10px;
   background-color: #22D351;
   color: #FFFFFF;
+  max-width: 100%;
+  width: max-content;
 }
 
 .log img {
@@ -50,4 +53,9 @@ h1 {
 .log figcaption {
   font-style: italic;
   text-align: center;
+}
+
+.log figure,
+.log>a {
+  width: 90%;
 }
