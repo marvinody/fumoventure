@@ -1,0 +1,53 @@
+body {
+  margin: 40px auto;
+  max-width: 650px;
+  line-height: 1.6;
+  font-size: 18px;
+  color: #444;
+  padding: 0 10px;
+  font-family: sans-serif;
+  background-color: #eee;
+}
+
+body,
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+figure,
+h1 {
+  align-self: center;
+}
+
+.log p {
+  font-size: 1.2em;
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #22D351;
+  color: #FFFFFF;
+}
+
+.log img {
+  border-radius: 15px;
+  max-width: 100%;
+}
+
+.log img:hover {}
+
+.log hr {
+  width: 100%;
+  margin: 30px 0;
+}
+
+.log figcaption {
+  font-style: italic;
+  text-align: center;
+}
