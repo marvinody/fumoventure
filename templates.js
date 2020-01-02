@@ -1,4 +1,4 @@
-const post = (person, nav, posts) => {
+const page = ({ person, nav, posts }) => {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -55,7 +55,7 @@ const divider = () => {
   return `<hr />`
 }
 
-const image = ({ image, thumb, alt }) => {
+const regularImage = ({ image, thumb, alt }) => {
   return `
   <a href="${image}">
     <img
@@ -69,7 +69,7 @@ const image = ({ image, thumb, alt }) => {
 const captionedImage = ({ image, thumb, alt }) => {
   return `
   <figure>
-    ${image({ image, thumb, alt })}
+    ${regularImage({ image, thumb, alt })}
     <figcaption>
       ${alt}
     </figcaption>
@@ -87,8 +87,9 @@ const nav = ({ prev, next }) => {
 
 module.exports = {
   message,
-  image,
+  image: regularImage,
   captionedImage,
-  post,
+  page,
   nav,
+  divider,
 }
