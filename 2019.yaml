@@ -1,0 +1,14 @@
+year: 2019
+list:
+  - name: "Manny"
+    location: "NY"
+    entries:
+      - pic: "1094.png"
+        text: "asdf.png"
+      - pic: "1094.png"
+        text: "asdf.png"
+  - name: "James"
+    location: "CA"
+    entries:
+      - pic: "1094.png"
+        text: "asdf.png"

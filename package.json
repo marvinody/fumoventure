@@ -1,0 +1,22 @@
+{
+  "name": "fumoventure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo \"Error: build not implemented\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marvinody/fumoventure.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marvinody/fumoventure/issues"
+  },
+  "homepage": "https://github.com/marvinody/fumoventure#readme",
+  "dependencies": {
+    "js-yaml": "^3.13.1"
+  }
+}
