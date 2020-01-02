@@ -24,6 +24,16 @@ try {
   // this is for web (so root is here)
   const baseImagesFolder = join(path.sep, "images")
 
+  const personToURL = person => {
+    if (person) {
+      return {
+        link: join(path.sep, year, person.name.toLowerCase()),
+        text: person.name,
+      }
+    }
+    return ""
+  }
+
   doc.list.forEach((person, idx, arr) => {
     // grab folder names now and pass them down
     const name = person.name.toLowerCase()
@@ -37,15 +47,25 @@ try {
       `${paddedIdx}-${name}`
     )
 
+    const prev = personToURL(arr[idx - 1])
+    const next = personToURL(arr[idx + 1])
+
     // make the html for each person now. this takes care of file formation also
-    makePage({ person, htmlFolder, imageFolder, thumbFolder })
+    makePage({ person, htmlFolder, imageFolder, thumbFolder, prev, next })
   })
 } catch (e) {
   console.log(e)
 }
 
 // generate page for given person.
-function makePage({ person, htmlFolder, imageFolder, thumbFolder }) {
+function makePage({
+  person,
+  htmlFolder,
+  imageFolder,
+  thumbFolder,
+  next,
+  prev,
+}) {
   // where are we putting the final file
   const htmlFile = join(htmlFolder, "index.html")
   const entries = person.entries
@@ -76,8 +96,8 @@ function makePage({ person, htmlFolder, imageFolder, thumbFolder }) {
     })
     .join("") // everything is a string in our template world
 
-  // TODO fix nav later (raises interesting passing issues)
-  const page = templates.page({ person, nav: "", posts })
+  const nav = templates.nav({ prev, next })
+  const page = templates.page({ person, nav, posts })
   mkdirp.sync(htmlFolder)
   fs.writeFileSync(htmlFile, page)
 }
