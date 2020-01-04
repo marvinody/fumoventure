@@ -5,17 +5,20 @@ const mkdirp = require("mkdirp")
 const templates = require("./templates")
 const join = path.join
 
-const file = process.argv[2]
+const loadYAML = filename => yaml.safeLoad(fs.readFileSync(filename, "utf8"))
+
+let file = process.argv[2]
 if (!file) {
   console.error("Expected file with stuff in it to be passed")
+} else if (!file.startsWith("/")) {
+  // is it a relative path? then do it with w/e dir it's executing in
+  file = path.join(process.cwd(), file)
 }
-
-const filepath = path.join(process.cwd(), file)
 
 // Get document, or throw exception on error
 try {
   // load the file from args
-  const doc = yaml.safeLoad(fs.readFileSync(filepath, "utf8"))
+  const doc = loadYAML(file)
 
   // pull some general stuff for later
   const year = String(doc.year)
@@ -34,7 +37,22 @@ try {
     return ""
   }
 
-  doc.list.forEach((person, idx, arr) => {
+  const loadPerson = thing => {
+    // if it's not a string, don't bother processing it. should be good
+    if (typeof thing !== "string") {
+      return thing
+    }
+    // if a string is supplied, then it's a relative location
+    // to the file. Let's go get it!
+    // relative from the initial file tho, not any other dir
+    const basePath = path.dirname(file)
+    const relativePath = thing
+    const personYAMLPath = join(basePath, relativePath)
+    return loadYAML(personYAMLPath)
+  }
+
+  doc.list.forEach((possiblePerson, idx, arr) => {
+    const person = loadPerson(possiblePerson)
     // grab folder names now and pass them down
     const name = person.name.toLowerCase()
     const htmlFolder = join(baseHTMLFolder, name)
@@ -47,8 +65,8 @@ try {
       `${paddedIdx}-${name}`
     )
 
-    const prev = personToURL(arr[idx - 1])
-    const next = personToURL(arr[idx + 1])
+    const prev = personToURL(loadPerson(arr[idx - 1]))
+    const next = personToURL(loadPerson(arr[idx + 1]))
 
     // make the html for each person now. this takes care of file formation also
     makePage({ person, htmlFolder, imageFolder, thumbFolder, prev, next })
