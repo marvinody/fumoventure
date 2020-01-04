@@ -1,0 +1,52 @@
+year: 2019
+list:
+  - name: "Manny"
+    location: "NY"
+    entries:
+      - pic: "1094.png"
+        text: "asdf.png"
+      - pic: "1094.png"
+        text: "asdf.png"
+  - name: "James"
+    location: "CA"
+    entries:
+      - text: Alice shadows me as I continue my workday. She has no idea what is being shown on the screen. Smol Android buddy joins her in confusion.
+      - pic: "20190802_153714_HDR.jpg"
+        text: "Alice in front of a computer screen with an Android toy"
+      - text: "Alice signs an NDA, swearing not tell anyone about the confidential secrets she's seen."
+      - divider: true
+      - pic: "20190802_173444_HDR.jpg"
+        text: "Alice goes for a ride in a StreetView car."
+      - text: Alice capitalizes on lowered interest rates by securing a refinance on one of her investment properties.
+      - pic: "20190804_174242_HDR.jpg"
+        text: After singing over 300 pages of documents, her hand hurts.
+      - divider: true
+      - pic: "20190810_151532_HDR.jpg"
+        text: Alice finds a ~~casting~~ couch
+      - pic: "20190810_151821_HDR.jpg"
+      - pic: "20190810_152114_HDR.jpg"
+        text: "A crowd of soft is forming!"
+      - pic: "20190810_152653_HDR.jpg"
+        text: "It's a full house!"
+      - pic: "20190810_153530_HDR.jpg"
+        text:
+          - "Who are you?"
+          - "I am you, but with a tag."
+      - pic: "20190810_153717_HDR.jpg"
+        text: "Alice bows before her Lord and Savior, Pringles Kasen"
+      - pic: "20190810_154330_HDR.jpg"
+      - text: "Alice meets Shanghai"
+      - divider: true
+      - pic: "20190810_174445_HDR.jpg"
+        text: "Shoyu ramen with Alice"
+      - pic: "20190810_174823_HDR.jpg"
+        text: "DEEP FRIED SUSHI"
+      - pic: "20190810_180252_HDR.jpg"
+        text: "Matcha Arisu Cream"
+      - text: "While eating, a German couple recognized Alice and complemented how cute she was."
+      - text: "Apparently had the scarlet sisters in their car. Missed out on a photo op with them."
+      - pic: "20190811_192922_HDR.jpg"
+        text: Arisu eats cornbread
+      - pic: "20190811_193944_HDR.jpg"
+        text: Crepes with Alice
+  - "2019/tirya.yaml"
