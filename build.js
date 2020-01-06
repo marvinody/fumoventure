@@ -4,6 +4,13 @@ const path = require("path")
 const mkdirp = require("mkdirp")
 const templates = require("./templates")
 const join = path.join
+const emotesMapper = require("./utils/emotes")
+const markdownMapper = require("./utils/markdown")
+const pipe = require("./utils/pipe")
+
+// responsible for modifying text that the user will see
+// emotes, markdown, and links should all be changed into some html
+const textChanger = pipe(emotesMapper, markdownMapper)
 
 const loadYAML = filename => yaml.safeLoad(fs.readFileSync(filename, "utf8"))
 
@@ -100,16 +107,18 @@ function makePage({
         return templates.divider()
       } else if (entry.pic && entry.text) {
         const [image, thumb] = getPics()
+        const changedText = textChanger(entry.text)
         return templates.captionedImage({
           image,
           thumb,
-          alt: entry.text,
+          alt: changedText,
         })
       } else if (entry.pic) {
         const [image, thumb] = getPics()
         return templates.image({ image, thumb })
       } else if (entry.text) {
-        return templates.message(entry.text)
+        const changedText = textChanger(entry.text)
+        return templates.message(changedText)
       }
     })
     .join("") // everything is a string in our template world
