@@ -9,7 +9,7 @@ const emotes = {
 // used to prevent logging multiple emotes several times
 const nonexistentEmotes = {}
 
-const emoteRegexp = /:(.*?):/g
+const emoteRegexp = /:([^ ]+?):/g
 
 module.exports = s => {
   if (typeof s !== "string") return s
