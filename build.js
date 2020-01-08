@@ -12,6 +12,9 @@ const pipe = require("./utils/pipe")
 // emotes, markdown, and links should all be changed into some html
 const textChanger = pipe(emotesMapper, markdownMapper)
 
+// keep consistent urls from generally names
+const urlify = s => s.toLowerCase().replace(/ /, "")
+
 const loadYAML = filename => yaml.safeLoad(fs.readFileSync(filename, "utf8"))
 
 let file = process.argv[2]
@@ -37,7 +40,7 @@ try {
   const personToURL = person => {
     if (person) {
       return {
-        link: join(path.sep, year, person.name.toLowerCase()),
+        link: join(path.sep, year, urlify(person.name)),
         text: person.name,
       }
     }
@@ -61,7 +64,7 @@ try {
   doc.list.forEach((possiblePerson, idx, arr) => {
     const person = loadPerson(possiblePerson)
     // grab folder names now and pass them down
-    const name = person.name.toLowerCase()
+    const name = urlify(person.name)
     const htmlFolder = join(baseHTMLFolder, name)
     const paddedIdx = String(idx).padStart(2, "0")
     const imageFolder = join(baseImagesFolder, year, `${paddedIdx}-${name}`)
