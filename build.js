@@ -1,26 +1,26 @@
-const yaml = require("js-yaml")
-const fs = require("fs")
-const path = require("path")
-const mkdirp = require("mkdirp")
-const templates = require("./templates")
+const yaml = require('js-yaml')
+const fs = require('fs')
+const path = require('path')
+const mkdirp = require('mkdirp')
+const templates = require('./templates')
 const join = path.join
-const emotesMapper = require("./utils/emotes")
-const markdownMapper = require("./utils/markdown")
-const pipe = require("./utils/pipe")
+const emotesMapper = require('./utils/emotes')
+const markdownMapper = require('./utils/markdown')
+const pipe = require('./utils/pipe')
 
 // responsible for modifying text that the user will see
 // emotes, markdown, and links should all be changed into some html
 const textChanger = pipe(emotesMapper, markdownMapper)
 
 // keep consistent urls from generally names
-const urlify = s => s.toLowerCase().replace(/ /, "")
+const urlify = s => s.toLowerCase().replace(/ /, '')
 
-const loadYAML = filename => yaml.safeLoad(fs.readFileSync(filename, "utf8"))
+const loadYAML = filename => yaml.safeLoad(fs.readFileSync(filename, 'utf8'))
 
 let file = process.argv[2]
 if (!file) {
-  console.error("Expected file with stuff in it to be passed")
-} else if (!file.startsWith("/")) {
+  console.error('Expected file with stuff in it to be passed')
+} else if (!file.startsWith('/')) {
   // is it a relative path? then do it with w/e dir it's executing in
   file = path.join(process.cwd(), file)
 }
@@ -35,7 +35,7 @@ try {
   // this is for filesystem
   const baseHTMLFolder = join(__dirname, year)
   // this is for web (so root is here)
-  const baseImagesFolder = join(path.sep, "images")
+  const baseImagesFolder = join(path.sep, 'images')
 
   const personToURL = person => {
     if (person) {
@@ -44,12 +44,12 @@ try {
         text: person.name,
       }
     }
-    return ""
+    return ''
   }
 
   const loadPerson = thing => {
     // if it's not a string, don't bother processing it. should be good
-    if (typeof thing !== "string") {
+    if (typeof thing !== 'string') {
       return thing
     }
     // if a string is supplied, then it's a relative location
@@ -66,11 +66,11 @@ try {
     // grab folder names now and pass them down
     const name = urlify(person.name)
     const htmlFolder = join(baseHTMLFolder, name)
-    const paddedIdx = String(idx).padStart(2, "0")
+    const paddedIdx = String(idx).padStart(2, '0')
     const imageFolder = join(baseImagesFolder, year, `${paddedIdx}-${name}`)
     const thumbFolder = join(
       baseImagesFolder,
-      "thumbs",
+      'thumbs',
       year,
       `${paddedIdx}-${name}`
     )
@@ -95,7 +95,7 @@ function makePage({
   prev,
 }) {
   // where are we putting the final file
-  const htmlFile = join(htmlFolder, "index.html")
+  const htmlFile = join(htmlFolder, 'index.html')
   const entries = person.entries
   // for each entry, 'switch' on whatever it looks like
   const posts = entries
@@ -124,7 +124,7 @@ function makePage({
         return templates.message(changedText)
       }
     })
-    .join("") // everything is a string in our template world
+    .join('') // everything is a string in our template world
 
   const nav = templates.nav({ prev, next })
   const page = templates.page({ person, nav, posts })
