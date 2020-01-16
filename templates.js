@@ -9,7 +9,7 @@ const page = ({ person, nav, posts }) => {
       <link media="all" rel="stylesheet" href="/style.css" />
       <meta
         name="twitter:image:src"
-        content="https://marvinody.github.io/fumoventure/images/alice_t.png"
+        content="https://fumoventure.sadpanda.moe/images/alice_t.png"
       />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content="Fumoventure" />
@@ -23,7 +23,7 @@ const page = ({ person, nav, posts }) => {
       <meta property="og:title" content="Fumoventure" />
       <meta
         property="og:url"
-        content="https://marvinody.github.io/fumoventure/"
+        content="https://fumoventure.sadpanda.moe/"
       />
       <meta
         property="og:description"
@@ -85,6 +85,60 @@ const nav = ({ prev, next }) => {
   `
 }
 
+const index = ({ year, people }) => {
+  return `
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <link media="all" rel="stylesheet" href="/style.css" />
+      <meta
+        name="twitter:image:src"
+        content="https://fumoventure.sadpanda.moe/images/alice_t.png"
+      />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content="Fumoventure" />
+      <meta
+        name="twitter:description"
+        content="The story of a plush traveling around the planet"
+      />
+      <meta property="og:image" content="/images/alice.png" />
+      <meta property="og:site_name" content="Fumoventure" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="Fumoventure" />
+      <meta
+        property="og:url"
+        content="https://fumoventure.sadpanda.moe/"
+      />
+      <meta
+        property="og:description"
+        content="The story of a plush traveling around the planet"
+      />
+      <title>Fumoventure ${year}</title>
+    </head>
+    <body>
+      <a href="/" class="title">
+        <h1>Fumoventure</h1>
+      </a>
+
+      <div class="container">
+        <h2>What is this?</h2>
+        <p>This is the story of a plush called Alice (from a game called Touhou Project) traveling around the US.</p>
+        <p> The purpose of this site is to document her travels outside of the discord server it took place in and to have all the pictures available for anyone</p>
+        <p>Enjoy</p>
+
+        <h2 class="">Participants (chronological order)</h2>
+        <ul>
+          ${people.map(p => `<li><a href='${p.url}'>${p.name}</a></li>`).join('\n')}
+        </ul>
+      </div>
+      </body>
+    </html>
+    `
+}
+
 module.exports = {
   message,
   image: regularImage,
@@ -92,4 +146,5 @@ module.exports = {
   page,
   nav,
   divider,
+  index,
 }

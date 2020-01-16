@@ -60,11 +60,15 @@ try {
     const personYAMLPath = join(basePath, relativePath)
     return loadYAML(personYAMLPath)
   }
+  const people = doc.list.map(loadPerson)
 
-  doc.list.forEach((possiblePerson, idx, arr) => {
-    const person = loadPerson(possiblePerson)
+
+  people.forEach((person, idx, arr) => {
     // grab folder names now and pass them down
     const name = urlify(person.name)
+    const url = `/${year}/${name}`
+    person.url = url
+
     const htmlFolder = join(baseHTMLFolder, name)
     const paddedIdx = String(idx).padStart(2, '0')
     const imageFolder = join(baseImagesFolder, year, `${paddedIdx}-${name}`)
@@ -75,12 +79,15 @@ try {
       `${paddedIdx}-${name}`
     )
 
-    const prev = personToURL(loadPerson(arr[idx - 1]))
-    const next = personToURL(loadPerson(arr[idx + 1]))
+    const prev = personToURL(arr[idx - 1])
+    const next = personToURL(arr[idx + 1])
 
     // make the html for each person now. this takes care of file formation also
     makePage({ person, htmlFolder, imageFolder, thumbFolder, prev, next })
   })
+  makeIndex({ people, htmlFolder: baseHTMLFolder, year }) // this sets the year's root
+  makeIndex({ people, htmlFolder: __dirname, year }) // this sets the root
+
 } catch (e) {
   console.log(e)
 }
@@ -128,6 +135,19 @@ function makePage({
 
   const nav = templates.nav({ prev, next })
   const page = templates.page({ person, nav, posts })
+  mkdirp.sync(htmlFolder)
+  fs.writeFileSync(htmlFile, page)
+}
+
+function makeIndex({
+  people,
+  htmlFolder,
+  year,
+}) {
+  // where are we putting the final file
+  const htmlFile = join(htmlFolder, 'index.html')
+  const names = people.map(p => p.name)
+  const page = templates.index({ year, people })
   mkdirp.sync(htmlFolder)
   fs.writeFileSync(htmlFile, page)
 }
