@@ -1,6 +1,8 @@
 const markdown = {
   "\\|\\|": "spoiler",
   "~~": "strikethrough",
+  "\\*\\*": "bold",
+  "\\*": "italic",
 }
 const pipe = require("./pipe")
 
