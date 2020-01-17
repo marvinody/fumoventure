@@ -55,7 +55,7 @@ const divider = () => {
   return `<hr />`
 }
 
-const regularImage = ({ image, thumb, alt }) => {
+const regularImage = ({ image, thumb, alt = '' }) => {
   return `
   <a href="${image}">
     <img
@@ -69,7 +69,7 @@ const regularImage = ({ image, thumb, alt }) => {
 const captionedImage = ({ image, thumb, alt }) => {
   return `
   <figure>
-    ${regularImage({ image, thumb, alt })}
+    ${regularImage({ image, thumb })}
     <figcaption>
       ${alt}
     </figcaption>
