@@ -1,9 +1,5 @@
 /* eslint-disable camelcase */
 const emotes = {
-  // this works in theory but for some reason, the img tag doesn't load the discord url images
-  // not sure if discord is blocking me or some weird setting I enabled on my browser
-  // cheap fix for this is to download the emotes and host them locally which may be better in the end.
-  // a spritesheet is also a thing but I don't want that since that's a lot of work rn
   Aleece: 'https://cdn.discordapp.com/emojis/349558986128883712.png',
   Circry: 'https://cdn.discordapp.com/emojis/471481822325374986.png?v=1',
   CirnoBounce: 'https://cdn.discordapp.com/emojis/614525912867799201.gif?v=1',
@@ -87,13 +83,15 @@ module.exports = s => {
       return orig
     }
     const emoteClass = `emote ${onlyEmotes ? 'jumboable' : ''}`
-    const x = [`<img`,
-      `alt=":${emote}:"`,
-      `src="${emotes[emote]}"`,
-      `class="${emoteClass}"`,
-      `draggable="false"`,
-      `/> `].join(' ')
+    return `<img
+      alt=":${emote}:"
+      src="${emotes[emote]}"
+      class="${emoteClass}"
+      draggable="false"
+      /> `
+      .replace(/^ +/gm, '').replace(/\n/g, ' ')
+    // above handles removing leading spaces (from the indents) and spacing issues
+    // will display the html in 1 line to conserve space when reading it by human later if needed
 
-    return x
   })
 }
