@@ -85,6 +85,10 @@ const nav = ({ prev, next }) => {
   `
 }
 
+const footer = () => {
+  return `<footer>Source over on <a href=''>GitHub</a> if you're into that sorta thing</footer>`
+}
+
 const index = ({ year, people }) => {
   return `
   <!DOCTYPE html>
@@ -130,14 +134,21 @@ const index = ({ year, people }) => {
         <p>Enjoy</p>
 
         <h2 class="">Participants (chronological order)</h2>
-        <ul>
+        <ul class="participants">
           ${people.map(p => `<li><a href='${p.url}'>${p.name}</a></li>`).join('\n')}
         </ul>
+        <div class='book-info'>
+          <h2>Ok, but what if I want a book?</h2>
+          <p>We also made a photo book that summarizes her adventure! You can find the pdf <a href='/fumoventure_book.pdf'>here</a> and if you want a physical copy, reach out to Manny on the <a href="https://discord.gg/3ZETQrw
+          ">Fumo discord.</a> It's about $20 to print and he'll cover shipping if you're an active member!</p>
+        </div>
       </div>
+      ${footer()}
       </body>
     </html>
     `
 }
+
 
 module.exports = {
   message,
