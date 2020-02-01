@@ -1,14 +1,30 @@
 year: 2019
 list:
   - name: "Manny"
-    location: "NY"
+    location: "New York"
     entries:
-      - pic: "1094.png"
-        text: "asdf.png"
-      - pic: "1094.png"
-        text: "asdf.png"
+      - text: "To start Alice's journey, we went to the Fumo restaurant!"
+      - pic: "20190724_151724.jpg"
+      - pic: "20190724_152034.jpg"
+      - pic: "20190724_153305.jpg"
+        text: "I know it's a pizza place but she wanted a steak for her sendoff"
+      - pic: "20190724_155920.jpg"
+      - pic: "20190728_013807.jpg"
+        text: "relaxing with some Overwatch after"
+      - divider: true
+      - text: "**SUDDENLY, a new package!**"
+      - pic: "20190730_192035.jpg"
+      - pic: "20190730_192050.jpg"
+        text: 'What could it be?", as she tries opening it'
+      - text: "Shanghai!"
+      - pic: "20190730_192149.jpg"
+      - divider: true
+      - pic: "20190730_193106.jpg"
+      - pic: "20190731_142521.jpg"
+      - text: "Shanghai makes sure Alice is safe to reach her first destination on the inaugural fumoventure!"
+
   - name: "James"
-    location: "CA"
+    location: "California"
     entries:
       - text: Alice shadows me as I continue my workday. She has no idea what is being shown on the screen. Smol Android buddy joins her in confusion.
       - pic: "20190802_153714_HDR.jpg"
