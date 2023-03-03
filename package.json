@@ -18,6 +18,6 @@
   "homepage": "https://github.com/marvinody/fumoventure#readme",
   "dependencies": {
     "js-yaml": "^3.13.1",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "^0.5.6"
   }
 }
